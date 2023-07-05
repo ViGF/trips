@@ -1,11 +1,9 @@
-'use client'
-
-import { signIn } from 'next-auth/react'
+import { TripSearch } from "./components/TripSearch";
 
 export default function Home() {
   return (
     <div>
-      <button onClick={() => signIn()}>Login</button>
+      <TripSearch />
     </div>
   )
 }

@@ -1,13 +1,13 @@
 'use client'
 
-import { Button } from "./Button";
-import { CurrencyInput } from "./CurrencyInput";
-import DatePicker from "./DatePicker";
-import Input from "./Input";
+import { Button } from "../../components/Button";
+import { CurrencyInput } from "../../components/CurrencyInput";
+import DatePicker from "../../components/DatePicker";
+import Input from "../../components/Input";
 
 export function TripSearch() {
   return (
-    <div className="container mx-auto p-5">
+    <div className="container mx-auto p-5 bg-search bg-cover bg-center bg-no-repeat">
       <h1
         className="font-semibold text-xl text-primaryDarker text-center"
       >
@@ -20,6 +20,7 @@ export function TripSearch() {
           <DatePicker placeholderText="Data de ida" onChange={() => { }} className="w-full" />
           <CurrencyInput placeholder="Orçamento" />
         </div>
+        <Button>Buscar</Button>
       </div>
     </div>
   )
