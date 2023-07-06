@@ -1,4 +1,3 @@
-
 export function CategoryDivider({ text }: { text: string }) {
   return (
     <div className="flex items-center">

@@ -1,4 +1,4 @@
-import NextAuthProvider from '@/app/providers/NextAuthProvider'
+import NextAuthProvider from '@/providers/NextAuthProvider'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import { Header } from '../components/Header'
