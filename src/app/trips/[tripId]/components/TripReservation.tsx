@@ -22,6 +22,7 @@ export function TripReservation({ trip }: TripReservationProps) {
         className="mt-3"
         type="number"
         max={trip.maxGuests}
+        min={1}
       />
       <div className="flex justify-between mt-3">
         <p className="font-medium text-sm text-primaryDarker">Total (7 noites)</p>
