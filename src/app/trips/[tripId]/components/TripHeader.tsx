@@ -14,7 +14,7 @@ export function TripHeader({ trip }: TripHeaderProps) {
           width={556}
           height={400}
           alt={trip.name}
-          className="object-fill w-auto h-auto max-h-[400px] max-w-[556px]"
+          className="object-fill w-full h-auto max-h-[400px] max-w-[556px]"
         />
         <div className="flex flex-col p-5">
           <h1 className="font-semibold text-xl text-primaryDarker">{trip.name}</h1>
