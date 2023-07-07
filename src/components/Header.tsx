@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { signIn, useSession } from 'next-auth/react'
 import { Dropdown } from "./Dropdow";
+import Link from "next/link";
 
 export function Header() {
   const { status, data } = useSession()
@@ -13,12 +14,14 @@ export function Header() {
 
   return (
     <header className="container mx-auto h-20 flex items-center justify-between px-5">
-      <Image
-        src='/logo.png'
-        alt="Trips Logo (semelhante a do AirBnb)"
-        width={29.8}
-        height={32}
-      />
+      <Link href='/'>
+        <Image
+          src='/logo.png'
+          alt="Trips Logo (semelhante a do AirBnb)"
+          width={29.8}
+          height={32}
+        />
+      </Link>
       {status === 'unauthenticated' ? (
         <button className="text-primary font-semibold" onClick={handleLoginClick}>Login</button>
       ) : null}
