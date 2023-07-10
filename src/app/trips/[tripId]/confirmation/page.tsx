@@ -40,6 +40,10 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
         })
       }).then(res => res.json())
 
+      if (response?.error) {
+        return router.push('/')
+      }
+
       setTrip(response.trip)
       setTotalPrice(response.totalPrice)
       setIsLoading(false)
