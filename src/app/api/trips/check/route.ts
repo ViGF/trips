@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { isBefore, isEqual } from "date-fns";
+import { differenceInDays, isBefore, isEqual } from "date-fns";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -63,5 +63,8 @@ export async function POST(request: Request) {
     }, { status: 400 })
   }
 
-  return NextResponse.json({sucess: true}, { status: 200 })
+  return NextResponse.json({ 
+    trip,
+    totalPrice: differenceInDays(new Date(req.endDate), new Date(req.startDate)) * (+trip.pricePerDay)
+   }, { status: 200 })
 }
