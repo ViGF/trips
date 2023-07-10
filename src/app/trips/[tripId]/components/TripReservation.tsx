@@ -40,7 +40,7 @@ export function TripReservation({ tripStartDate, tripEndDate, maxGuests, pricePe
         message: 'Esta data já está reservada'
       })
 
-      setError('endDate', {
+      return setError('endDate', {
         type: 'validate',
         message: 'Esta data já está reservada'
       })
@@ -54,7 +54,7 @@ export function TripReservation({ tripStartDate, tripEndDate, maxGuests, pricePe
     }
 
     if (response?.error?.message === 'INVALID_END_DATE') {
-      setError('endDate', {
+      return setError('endDate', {
         type: 'validate',
         message: 'Data inválida'
       })
@@ -122,13 +122,21 @@ export function TripReservation({ tripStartDate, tripEndDate, maxGuests, pricePe
           required: {
             value: true,
             message: 'Número de hóspedes é obrigatório'
+          },
+          max: {
+            value: maxGuests,
+            message: `Número de hóspedes não pode ser maior que ${maxGuests}.`
           }
         })}
         error={!!errors?.guests}
         errorMessage={errors.guests?.message}
       />
       <div className="flex justify-between mt-3">
-        <p className="font-medium text-sm text-primaryDarker">Total (7 noites)</p>
+        <p className="font-medium text-sm text-primaryDarker">Total {
+          startDate && endDate ? (
+            `(${differenceInDays(endDate, startDate)} noite(s))`
+          ) : null
+        }</p>
         <p className="font-medium text-sm text-primaryDarker">R${
           startDate && endDate ? (
             differenceInDays(endDate, startDate) * (+pricePerDay)
