@@ -11,7 +11,8 @@ interface TripReservationProps {
   tripStartDate: Date
   tripEndDate: Date
   maxGuests: number
-  pricePerDay: Decimal
+  pricePerDay: number
+  tripId: string
 }
 
 interface TripReservationForm {
@@ -20,11 +21,44 @@ interface TripReservationForm {
   endDate: Date | null
 }
 
-export function TripReservation({ tripStartDate, tripEndDate, maxGuests, pricePerDay }: TripReservationProps) {
-  const { register, handleSubmit, formState: { errors }, control, watch } = useForm<TripReservationForm>()
+export function TripReservation({ tripStartDate, tripEndDate, maxGuests, pricePerDay, tripId }: TripReservationProps) {
+  const { register, handleSubmit, formState: { errors }, control, watch, setError } = useForm<TripReservationForm>()
 
-  function onSubmit(data: any) {
-    console.log(data)
+  async function onSubmit({ startDate, endDate, }: TripReservationForm) {
+    const response = await fetch('http://localhost:3000/api/trips/check', {
+      method: 'POST',
+      body: JSON.stringify({
+        startDate,
+        endDate,
+        tripId
+      })
+    }).then(res => res.json())
+
+    if (response?.error?.message === 'TRIP_ALREADY_RESERVED') {
+      setError('startDate', {
+        type: 'validate',
+        message: 'Esta data já está reservada'
+      })
+
+      setError('endDate', {
+        type: 'validate',
+        message: 'Esta data já está reservada'
+      })
+    }
+
+    if (response?.error?.message === 'INVALID_START_DATE') {
+      setError('startDate', {
+        type: 'validate',
+        message: 'Data inválida'
+      })
+    }
+
+    if (response?.error?.message === 'INVALID_END_DATE') {
+      setError('endDate', {
+        type: 'validate',
+        message: 'Data inválida'
+      })
+    }
   }
 
   const startDate = watch('startDate')
