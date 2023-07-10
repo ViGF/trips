@@ -1,10 +1,12 @@
 'use client'
 
-import { Trip } from "@prisma/client"
-import { format } from "date-fns"
-import Image from "next/image"
 import { useState, useEffect } from 'react'
+import { useSession } from "next-auth/react"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { Trip } from "@prisma/client"
 import ReactCountryFlag from "react-country-flag"
+import { format } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { Button } from "@/components/Button"
 
@@ -24,6 +26,9 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
   const [trip, setTrip] = useState<Trip | null>(null)
   const [totalPrice, setTotalPrice] = useState(0)
 
+  const router = useRouter()
+  const { status } = useSession()
+
   useEffect(() => {
     const fetchTrip = async () => {
       const response = await fetch('http://localhost:3000/api/trips/check', {
@@ -40,8 +45,14 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
       setIsLoading(false)
     }
 
-    fetchTrip()
-  }, [])
+    if (status === 'unauthenticated') {
+      return router.push('/')
+    }
+    
+    if (status === 'authenticated') {
+      fetchTrip()
+    }
+  }, [status])
 
   if (isLoading) {
     return <p>Carregando informações...</p>
