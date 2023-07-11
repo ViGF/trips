@@ -5,17 +5,15 @@ import { Prisma } from "@prisma/client";
 import { ptBR } from "date-fns/locale";
 import { Button } from "@/components/Button";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 
 interface UserReservationItemProps {
   reservation: Prisma.TripReservationGetPayload<{
     include: { trip: true }
   }>
+  fetchReservations: () => void
 }
 
-export function UserReservationItem({ reservation }: UserReservationItemProps) {
-  const router = useRouter()
-
+export function UserReservationItem({ reservation, fetchReservations }: UserReservationItemProps) {
   async function handleDeleteClick() {
     const response = await fetch(`/api/trips/reservation/${reservation.id}`, {
       method: 'DELETE'
@@ -32,7 +30,7 @@ export function UserReservationItem({ reservation }: UserReservationItemProps) {
         position: 'bottom-right'
       })
 
-      router.reload()
+      fetchReservations()
     }
   }
 
