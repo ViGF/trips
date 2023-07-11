@@ -43,7 +43,6 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
         totalPaid: totalPrice
       })
     }).then(res => res.json())
-    console.log(response)
 
     if (!response?.sucess) {
       return toast.error("Não foi possível realizar a reserva", {
@@ -60,7 +59,7 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
 
   useEffect(() => {
     const fetchTrip = async () => {
-      const response = await fetch('http://localhost:3000/api/trips/check', {
+      const response = await fetch('/api/trips/check', {
         method: 'POST',
         body: JSON.stringify({
           tripId: params.tripId,

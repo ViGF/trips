@@ -34,7 +34,7 @@ export function TripReservation({ tripStartDate, tripEndDate, maxGuests, pricePe
   const router = useRouter()
 
   async function onSubmit({ startDate, endDate, guests}: TripReservationForm) {
-    const response = await fetch('http://localhost:3000/api/trips/check', {
+    const response = await fetch('/api/trips/check', {
       method: 'POST',
       body: JSON.stringify({
         startDate,

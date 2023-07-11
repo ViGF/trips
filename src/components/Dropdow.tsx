@@ -17,13 +17,13 @@ export function Dropdown() {
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content className='p-2 pl-3 bg-white rounded-md shadow-md'>
-          <DropdownMenu.Item className='py-1'>
+          <DropdownMenu.Item className='py-1' asChild>
             <Link href='/my-trips' className='text-primary text-sm font-semibold hover:border-0 hover:text-primaryDarker'>
               Minhas viagens
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className='border-t border-primary' />
-          <DropdownMenu.Item className='py-1'>
+          <DropdownMenu.Item className='py-1' asChild>
             <button className='text-primary text-sm font-semibold hover:border-0 hover:text-primaryDarker' onClick={handleLogoutClick}>
               Logout
             </button>
