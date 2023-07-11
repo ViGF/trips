@@ -9,6 +9,8 @@ import ReactCountryFlag from "react-country-flag"
 import { format } from "date-fns"
 import ptBR from "date-fns/locale/pt-BR"
 import { Button } from "@/components/Button"
+import { toast } from 'react-toastify'
+
 
 interface TripConfirmationProps {
   params: {
@@ -27,7 +29,34 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
   const [totalPrice, setTotalPrice] = useState(0)
 
   const router = useRouter()
-  const { status } = useSession()
+  const { status, data } = useSession()
+
+  async function handleBuyClick() {
+    const response = await fetch('http://localhost:3000/api/trips/reservation', {
+      method: 'POST',
+      body: JSON.stringify({
+        tripId: params.tripId,
+        startDate: searchParams.startDate,
+        endDate: searchParams.endDate,
+        guests: +searchParams.guests,
+        userId: (data?.user as any).id,
+        totalPaid: totalPrice
+      })
+    }).then(res => res.json())
+    console.log(response)
+
+    if (!response?.sucess) {
+      return toast.error("Não foi possível realizar a reserva", {
+        position: 'bottom-right'
+      })
+    }
+
+    router.push('/')
+
+    toast.success("Reserva realizada com sucesso", {
+      position: 'bottom-right'
+    })
+  }
 
   useEffect(() => {
     const fetchTrip = async () => {
@@ -52,7 +81,7 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
     if (status === 'unauthenticated') {
       return router.push('/')
     }
-    
+
     if (status === 'authenticated') {
       fetchTrip()
     }
@@ -115,7 +144,7 @@ export default function TripConfirmation({ params, searchParams }: TripConfirmat
         <h3 className="font-semibold text-primaryDarker">Hóspedes</h3>
         <p>{searchParams.guests} hóspede(s)</p>
 
-        <Button className="mt-5">Finalizar Compra</Button>
+        <Button className="mt-5" onClick={handleBuyClick}>Finalizar Compra</Button>
       </div>
     </main>
   )
