@@ -1,32 +1,37 @@
-'use client'
+"use client";
 
 import Image from "next/image";
-import { signIn, useSession } from 'next-auth/react'
+import { signIn, useSession } from "next-auth/react";
 import { Dropdown } from "./Dropdow";
 import Link from "next/link";
 
 export function Header() {
-  const { status, data } = useSession()
+  const { status, data } = useSession();
 
   function handleLoginClick() {
-    signIn()
+    signIn();
   }
 
   return (
-    <header className="container mx-auto h-20 flex items-center justify-between px-5">
-      <Link href='/'>
+    <header className="container mx-auto flex h-20 items-center justify-between px-5">
+      <Link href="/">
         <Image
-          src='/logo.png'
+          src="/logo.png"
           alt="Trips Logo (semelhante a do AirBnb)"
-          width={29.8}
+          width={89}
           height={32}
         />
       </Link>
-      {status === 'unauthenticated' ? (
-        <button className="text-primary font-semibold" onClick={handleLoginClick}>Login</button>
+      {status === "unauthenticated" ? (
+        <button
+          className="font-semibold text-primary"
+          onClick={handleLoginClick}
+        >
+          Login
+        </button>
       ) : null}
-      {status === 'authenticated' && data.user ? (
-        <div className="flex items-center gap-5 border-grayLighter border px-2 py-1 rounded-full">
+      {status === "authenticated" && data.user ? (
+        <div className="flex items-center gap-5 rounded-full border border-grayLighter px-2 py-1">
           <Dropdown />
           <Image
             alt={data.user.name!}
@@ -38,5 +43,5 @@ export function Header() {
         </div>
       ) : null}
     </header>
-  )
+  );
 }
