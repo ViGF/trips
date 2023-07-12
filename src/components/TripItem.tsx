@@ -23,7 +23,8 @@ export function TripItem({ trip }: TripItemProps) {
           width={280}
           height={280}
           alt={trip.name}
-          className="rounded-lg shadow-sm w-auto h-64"
+          quality={100}
+          className="rounded-lg object-fill shadow-sm w-auto h-auto"
         />
         <h3 className="text-sm text-primaryDarker font-medium mt-1">{trip.name}</h3>
         <div className="flex items-center gap-2 mb-1">
