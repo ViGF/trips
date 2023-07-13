@@ -31,10 +31,10 @@ export default function TripConfirmation({
   const [totalPrice, setTotalPrice] = useState(0);
 
   const router = useRouter();
-  const { status, data } = useSession();
+  const { status } = useSession();
 
   async function handleBuyClick() {
-    const response = await fetch("http://localhost:3000/api/payment", {
+    const response = await fetch("/api/payment", {
       method: "POST",
       body: JSON.stringify({
         tripId: params.tripId,
