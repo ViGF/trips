@@ -37,12 +37,12 @@ export default function MyTrips() {
   }, [status])
 
   return (
-    <main className="container mx-auto p-5">
+    <main className="container flex h-full flex-col justify-center p-5">
       <h1 className="font-semibold text-primaryDarker text-xl">Minhas viagens</h1>
       {reservations.length > 0 ? (reservations.map(reservation => (
         <UserReservationItem key={reservation.id} reservation={reservation} fetchReservations={fetchReservations} />
       ))) : (
-        <div className="flex flex-col">
+        <div className="flex flex-1 flex-col justify-center">
           <p className="font-medium text-primaryDarker text-center mt-2">Você ainda não possui reservas</p>
           <Link href='/'>
             <Button className="w-full mt-2">Fazer reserva</Button>
