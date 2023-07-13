@@ -29,12 +29,12 @@ export function TripSearch() {
   }
 
   return (
-    <div className="container mx-auto bg-search bg-cover bg-center bg-no-repeat p-5">
-      <h1 className="text-center text-xl font-semibold text-primaryDarker">
+    <div className="container mx-auto bg-search bg-cover bg-center bg-no-repeat p-5 lg:py-28">
+      <h1 className="text-center text-xl lg:text-2xl font-semibold text-primaryDarker">
         Encontre sua próxima{" "}
         <strong className="font-semibold text-primary">viagem!</strong>
       </h1>
-      <div className="mt-5 flex flex-col gap-4">
+      <div className="mt-5 lg:mt-12 flex flex-col gap-4 lg:flex-row lg:max-w-[948px] lg:mx-auto lg:p-4 lg:bg-primary lg:bg-opacity-20 lg:rounded-lg">
         <Input
           placeholder="Onde você quer ir?"
           {...register("text", {
@@ -47,7 +47,7 @@ export function TripSearch() {
           errorMessage={errors.text?.message}
         />
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 lg:w-full">
           <Controller
             name="startDate"
             control={control}
@@ -74,7 +74,7 @@ export function TripSearch() {
             )}
           />
         </div>
-        <Button type="submit" onClick={() => handleSubmit(onSubmit)()}>
+        <Button type="submit" onClick={() => handleSubmit(onSubmit)()} className="lg:w-1/2">
           Buscar
         </Button>
       </div>

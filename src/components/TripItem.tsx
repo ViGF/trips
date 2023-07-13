@@ -20,11 +20,11 @@ export function TripItem({ trip }: TripItemProps) {
       <div className="flex flex-col">
         <Image
           src={trip.coverImage}
-          width={280}
-          height={280}
+          width={384}
+          height={256}
           alt={trip.name}
           quality={100}
-          className="rounded-lg object-fill shadow-sm w-auto h-auto"
+          className="rounded-lg object-fill shadow-sm w-auto h-auto max-h-[256px]"
         />
         <h3 className="text-sm text-primaryDarker font-medium mt-1">{trip.name}</h3>
         <div className="flex items-center gap-2 mb-1">

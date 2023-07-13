@@ -6,7 +6,7 @@ export function QuickSearch() {
   return (
     <div className="container mx-auto p-5">
       <CategoryDivider text="Tente pesquisar por" />
-      <div className="mt-4 flex w-full justify-between">
+      <div className="mt-4 flex w-full justify-between lg:justify-center lg:gap-40 lg:mt-10">
         <Link
           href="/trips/search?text=hotel"
           className="flex flex-col items-center gap-1"
@@ -17,7 +17,7 @@ export function QuickSearch() {
             height={25}
             alt="Ícone de fachada de hotel"
           />
-          <p className="text-sm text-dark">Hotel</p>
+          <p className="text-sm lg:text-base text-dark">Hotel</p>
         </Link>
         <Link
           href="/trips/search?text=chalé"
@@ -29,7 +29,7 @@ export function QuickSearch() {
             height={25}
             alt="Ícone de fachada de chalé"
           />
-          <p className="text-sm text-dark">Chalés</p>
+          <p className="text-sm lg:text-base text-dark">Chalés</p>
         </Link>
         <Link
           href="/trips/search?text=pousada"
@@ -41,7 +41,7 @@ export function QuickSearch() {
             height={25}
             alt="Ícone com uma pequena pousada em morro"
           />
-          <p className="text-sm text-dark">Pousadas</p>
+          <p className="text-sm lg:text-base text-dark">Pousadas</p>
         </Link>
         <Link
           href="/trips/search?text=fazenda"
@@ -53,7 +53,7 @@ export function QuickSearch() {
             height={25}
             alt="Ícone com uma casa em uma fazenda"
           />
-          <p className="text-sm text-dark">Fazendas</p>
+          <p className="text-sm lg:text-base text-dark">Fazendas</p>
         </Link>
       </div>
     </div>

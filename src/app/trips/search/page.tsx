@@ -25,7 +25,7 @@ export default async function Trip({ searchParams }: TripProps) {
     };
 
     getTrips();
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="container mx-auto flex-col items-center p-5">
@@ -34,9 +34,8 @@ export default async function Trip({ searchParams }: TripProps) {
       </h1>
       <p className="font-medium text-dark">
         {trips.length > 0
-          ?"Listamos as melhores hospedagens para você"
-          : "Não encontramos nenhuma acomodação"
-        }
+          ? "Listamos as melhores hospedagens para você"
+          : "Não encontramos nenhuma acomodação"}
       </p>
       <div className="mt-2 flex flex-col gap-4">
         {trips.map((trip) => (
