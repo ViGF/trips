@@ -13,7 +13,7 @@ export function Header() {
   }
 
   return (
-    <header className="container mx-auto flex h-20 items-center justify-between px-5 lg:border-b lg:border-grayLighter">
+    <header className="container mx-auto flex h-20 items-center justify-between px-5">
       <Link href="/">
         <Image
           src="/logo.png"
