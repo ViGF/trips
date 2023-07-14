@@ -108,7 +108,7 @@ export default function TripConfirmation({
   const endDate = new Date(searchParams.endDate);
 
   return (
-    <main className="container mx-auto p-5">
+    <main className="container mx-auto p-5 lg:max-w-[600px] lg:pt-0">
       <h1 className="text-xl font-semibold text-primaryDarker">Sua viagem</h1>
       {/* CARD */}
       <div className="mt-5 flex flex-col gap-3 rounded-lg border p-5 shadow-lg">
@@ -156,7 +156,7 @@ export default function TripConfirmation({
           </p>
         </div>
 
-        <h3 className="font-semibold text-primaryDarker">Hóspedes</h3>
+        <h3 className="font-semibold text-primaryDarker mt-6">Hóspedes</h3>
         <p>{searchParams.guests} hóspede(s)</p>
 
         <Button className="mt-5" onClick={handleBuyClick}>
