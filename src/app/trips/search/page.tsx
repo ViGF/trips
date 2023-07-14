@@ -1,24 +1,23 @@
 "use client";
 
-import { TripItem } from "@/components/TripItem";
-import { Trip } from "@prisma/client";
 import { useEffect, useState } from "react";
+import { useSearchParams } from 'next/navigation'
+import { Trip } from "@prisma/client";
+import { TripItem } from "@/components/TripItem";
 
-interface TripProps {
-  searchParams: {
-    text: string;
-    startDate?: string;
-    budget?: string;
-  };
-}
-
-export default async function Trip({ searchParams }: TripProps) {
+export default async function Trip() {
   const [trips, setTrips] = useState<Trip[]>([]);
+  const searchParams = useSearchParams()
+ 
+  const text = searchParams.get('text')
+  const startDate = searchParams.get('startDate')
+  const budget = searchParams.get('budget')
 
   useEffect(() => {
+    console.log(searchParams)
     const getTrips = async () => {
       const response = await fetch(
-        `/api/trips/search?text=${searchParams.text}&startDate=${searchParams.startDate}&budget=${searchParams.budget}`
+        `/api/trips/search?text=${text}&startDate=${startDate}&budget=${budget}`
       ).then((res) => res.json());
 
       setTrips(response);
