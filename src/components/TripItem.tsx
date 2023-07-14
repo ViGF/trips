@@ -16,7 +16,7 @@ interface TripItemProps {
 
 export function TripItem({ trip }: TripItemProps) {
   return (
-    <Link href={`trips/${trip.id}`}>
+    <Link href={`/trips/${trip.id}`}>
       <div className="flex flex-col">
         <Image
           src={trip.coverImage}
