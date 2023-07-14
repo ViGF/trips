@@ -108,10 +108,10 @@ export default function TripConfirmation({
   const endDate = new Date(searchParams.endDate);
 
   return (
-    <main className="container mx-auto p-5 lg:max-w-[600px] lg:pt-0">
+    <main className="container mx-auto p-5 lg:max-w-[600px] lg:pt-2">
       <h1 className="text-xl font-semibold text-primaryDarker">Sua viagem</h1>
       {/* CARD */}
-      <div className="mt-5 flex flex-col gap-3 rounded-lg border p-5 shadow-lg">
+      <div className="mt-2 flex flex-col gap-3 rounded-lg border p-5 shadow-lg">
         <div className="flex items-center gap-3 border-b pb-5">
           <Image
             src={trip.coverImage}
